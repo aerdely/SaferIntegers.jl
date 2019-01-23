@@ -81,6 +81,22 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "howtouse/#Notes-1",
+    "page": "How To Use",
+    "title": "Notes",
+    "category": "section",
+    "text": ""
+},
+
+{
+    "location": "howtouse/#Operations-with-a-SafeInteger-that-result-in-an-integer-value-will-return-SafeIntegers-1",
+    "page": "How To Use",
+    "title": "Operations with a SafeInteger that result in an integer value will return SafeIntegers",
+    "category": "section",
+    "text": ""
+},
+
+{
     "location": "references/#",
     "page": "Refs",
     "title": "Refs",
