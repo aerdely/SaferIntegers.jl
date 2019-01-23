@@ -45,15 +45,111 @@ var documenterSearchIndex = {"docs": [
     "page": "Overview",
     "title": "Background",
     "category": "section",
-    "text": "Integer overflow occurs when an integer type is increased beyond its maximum value. Integer underflow occurs when an integer type is decreased below its minimum value.  Signed and Unsigned values are subject to overflow and underflow.  With Julia, you can see the rollover using Int or UInt types:   typemax(Int) + one(Int) < 0\n   typemin(Int) - one(Int) > 0\n   typemax(UInt) + one(UInt) == typemin(UInt)\n   typemin(UInt) - one(UInt) == typemax(UInt)\n   ```\nThere are security implications for integer overflow in certain situations.julia  for i in 1:a     secure(biohazard[i])  enda = Int16(456) * Int16(567)  a == -3592 # and the for loop does not execute\n## Highlights\n\n### Why Does This Package Exist?\n\n- Your work may require that integer calculations be secure, well-behaved or unsurprising.\n\n- Your clients may expect your package/app/product calculates with care and correctness.\n\n- Your software may become part of a system on which the health or assets of others depends.\n\n- Your prefer to publish research results that are free of error, and you work with integers.\n\n### What Does This Package Offer?\n\n- **SaferIntegers** lets you work more cleanly and always alerts otherwise silent problems.\n\n- This package is designed for easy use and written to be performant in many sorts of use.\n\n- Using **SaferIntegers** can preclude some known ways that insecure systems are breached.\n\n----\n\n## A Basic Guide\n\nTo use safer integers within your computations, where you have been using    \nexplict digit sequences put them inside the safe integer constructors,    \n`SafeInt(11)` or `SafeUInt(0x015A)` and similarly for the bitsize-named versions    \n`SafeInt8`, `SafeInt16` .. `SafeInt128` and `SafeUInt8` .. `SafeUInt128`   \n\nWhere you had used`Int` or `UInt` now use `SafeInt` or `SafeUInt` and similarly\nwith the bitsize-named versions.    \n\nSafeInt and SafeUInt give you these arithmetic operators:    \n`+`, `-`, `*`, `div`, `rem`, `fld`, `mod`, `^`    \nwhich have become overflow and underflow aware.\n\nThe Int and UInt types can fail at simple arithmetic        \nand will continue carrying the incorrectness forward.    \nThe validity of values obtained is difficult to ascertain.\n\nMost calculations proceed without incident, \nand when used SafeInts operate as Ints\nshould a calculation encouter an overflow or underflow, \n    we are alerted and the calculation does not proceed.\n\n#### Give them a whirl.\n\n> Get the package: `Pkg.add(\"SaferIntegers\")`     \n> Use the package:  `using SaferIntegers`     \n\n- These functions check for overflow/underflow automatically:    \n    - abs, (neg), (-), (+), (*), div, fld, cld, rem, mod, (^)\n    - so does (/), before converting to Float64\n\n## Exported Types and Constructors / Converters\n\n- `SafeInt8`, `SafeInt16`, `SafeInt32`, `SafeInt64`, `SafeInt128`    \n- `SafeUInt8`, `SafeUInt16`, `SafeUInt32`, `SafeUInt64`, `SafeUInt128`   \n- `SafeSigned`, `SafeUnsigned`, `SafeInteger`\n\nThey check for overflow, even when multiplied by the usual Int and UInt types.    \nOtherwise, they should be unsurprising.\n\n## Other Conversions \n\n`Signed(x::SafeSigned)` returns an signed integer of the same bitwidth as x    \n`Unsigned(x::SafeUnsigned)` returns an unsigned integer of the same bitwidth as x    \n`Integer(x::SafeInteger)` returns an Integer of the same bitwidth and either Signed or Unsigned as is x\n\n`SafeSigned(x::Signed)` returns a safe signed integer of the same bitwidth as x    \n`SafeUnsigned(x::Unsigned)` returns a safe unsigned integer of the same bitwidth as x    \n`SafeInteger(x::Integer)` returns a safe Integer of the same bitwidth and either Signed or Unsigned as is x\n\n## Supports\n\n- `signbit`, `sign`, `abs`, `abs2`\n- `count_ones`, `count_zeros`\n- `leading_zeros`, `trailing_zeros`, `leading_ones`, `trailing_ones`\n- `ndigits0z`\n- `isless`, `isequal`, `<=`, `<`, `==`, `!=`, `>=`, `>`\n- `>>>`, `>>`, `<<`, `+`, `-`, `*`, `\\`, `^`\n- `div`, `fld`, `cld`, `rem`, `mod`\n- `zero`, `one`\n- `typemin`, `typemax`, `widen` \n\n## Benchmarking (one one machine)\n\njulia v1.1-devjulia using SaferIntegers using BenchmarkTools BenchmarkTools.DEFAULTPARAMETERS.timetolerance=0.005@noinline function test(n, f, a,b,c,d)    result = a;    i = 0    while true        i += 1        i > n && break               result += f(d,c)+f(b,a)+f(d,b)+f(c,a)    end    return result endhundredths(x) = round(x, digits=2)a = 17; b = 721; c = 75; d = 567; sa, sb, sc, sd = SafeInt.((a, b, c, d)); n = 10_000;hundredths( (@belapsed test(n, +, sa, sb, sc, sd)) /             (@belapsed test(n, +, a, b, c, d))        ) 1.25hundredths( (@belapsed test(n, *, sa, sb, sc, sd)) /             (@belapsed test(n, *, a, b, c, d))        ) 1.25hundredths( (@belapsed test(n, div, sa, sb, sc, sd)) /             (@belapsed test(n, div, a, b, c, d))      ) 1.14 ```"
+    "text": "Integer overflow occurs when an integer type is increased beyond its maximum value. Integer underflow occurs when an integer type is decreased below its minimum value.  Signed and Unsigned values are subject to overflow and underflow.  With Julia, you can see the rollover using Int or UInt types:   typemax(Int) + one(Int) < 0\n   typemin(Int) - one(Int) > 0\n   typemax(UInt) + one(UInt) == typemin(UInt)\n   typemin(UInt) - one(UInt) == typemax(UInt)\n   ```\nThere are security implications for integer overflow in certain situations.julia  for i in 1:a     secure(biohazard[i])  enda = Int16(456) * Int16(567)  a == -3592 # and the for loop does not execute ```"
 },
 
 {
-    "location": "#credits-1",
-    "page": "Overview",
-    "title": "credits",
+    "location": "highlights/#",
+    "page": "Highlights",
+    "title": "Highlights",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "highlights/#Highlights-1",
+    "page": "Highlights",
+    "title": "Highlights",
     "category": "section",
-    "text": "This work derives from JuliaMath/RoundingIntegers.jl"
+    "text": ""
+},
+
+{
+    "location": "highlights/#Why-Does-This-Package-Exist?-1",
+    "page": "Highlights",
+    "title": "Why Does This Package Exist?",
+    "category": "section",
+    "text": "Your work may require that integer calculations be secure, well-behaved or unsurprising.\nYour clients may expect your package/app/product calculates with care and correctness.\nYour software may become part of a system on which the health or assets of others depends.\nYour prefer to publish research results that are free of error, and you work with integers."
+},
+
+{
+    "location": "highlights/#What-Does-This-Package-Offer?-1",
+    "page": "Highlights",
+    "title": "What Does This Package Offer?",
+    "category": "section",
+    "text": "SaferIntegers lets you work more cleanly and always alerts otherwise silent problems.\nThis package is designed for easy use and written to be performant in many sorts of use.\nUsing SaferIntegers can preclude some known ways that insecure systems are breached."
+},
+
+{
+    "location": "basicguide/#",
+    "page": "Basic Guide",
+    "title": "Basic Guide",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "basicguide/#A-Basic-Guide-1",
+    "page": "Basic Guide",
+    "title": "A Basic Guide",
+    "category": "section",
+    "text": "To use safer integers within your computations, where you have been using     explict digit sequences put them inside the safe integer constructors,     SafeInt(11) or SafeUInt(0x015A) and similarly for the bitsize-named versions     SafeInt8, SafeInt16 .. SafeInt128 and SafeUInt8 .. SafeUInt128   Where you had usedInt or UInt now use SafeInt or SafeUInt and similarly with the bitsize-named versions.    SafeInt and SafeUInt give you these arithmetic operators:     +, -, *, div, rem, fld, mod, ^     which have become overflow and underflow aware.The Int and UInt types can fail at simple arithmetic         and will continue carrying the incorrectness forward.     The validity of values obtained is difficult to ascertain.Most calculations proceed without incident,  and when used SafeInts operate as Ints should a calculation encouter an overflow or underflow,      we are alerted and the calculation does not proceed."
+},
+
+{
+    "location": "basicguide/#Give-them-a-whirl.-1",
+    "page": "Basic Guide",
+    "title": "Give them a whirl.",
+    "category": "section",
+    "text": "Get the package: Pkg.add(\"SaferIntegers\")      Use the package:  using SaferIntegers     These functions check for overflow/underflow automatically:    \nabs, (neg), (-), (+), (*), (^), div, fld, cld, rem (%), mod, divrem, fldmod\nso does (/), before converting to Float64"
+},
+
+{
+    "location": "basicguide/#Exported-Types-and-Constructors-/-Converters-1",
+    "page": "Basic Guide",
+    "title": "Exported Types and Constructors / Converters",
+    "category": "section",
+    "text": "SafeInt8, SafeInt16, SafeInt32, SafeInt64, SafeInt128    \nSafeUInt8, SafeUInt16, SafeUInt32, SafeUInt64, SafeUInt128   \nSafeSigned, SafeUnsigned, SafeIntegerThey check for overflow, even when multiplied by the usual Int and UInt types.     Otherwise, they should be unsurprising."
+},
+
+{
+    "location": "supports/#",
+    "page": "Supported Operations",
+    "title": "Supported Operations",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "supports/#Supported-Operations-and-Functions-1",
+    "page": "Supported Operations",
+    "title": "Supported Operations and Functions",
+    "category": "section",
+    "text": "signbit, sign, abs, abs2\ncount_ones, count_zeros\nleading_zeros, trailing_zeros, leading_ones, trailing_ones\nndigits0z\nisless, isequal, <=, <, ==, !=, >=, >\n>>>, >>, <<, +, -, *, \\, ^\ndiv, fld, cld, rem, mod\nzero, one\ntypemin, typemax, widen"
+},
+
+{
+    "location": "supports/#Other-Conversions-1",
+    "page": "Supported Operations",
+    "title": "Other Conversions",
+    "category": "section",
+    "text": "Signed(x::SafeSigned) returns an signed integer of the same bitwidth as x     Unsigned(x::SafeUnsigned) returns an unsigned integer of the same bitwidth as x     Integer(x::SafeInteger) returns an Integer of the same bitwidth and either Signed or Unsigned as is xSafeSigned(x::Signed) returns a safe signed integer of the same bitwidth as x     SafeUnsigned(x::Unsigned) returns a safe unsigned integer of the same bitwidth as x     SafeInteger(x::Integer) returns a safe Integer of the same bitwidth and either Signed or Unsigned as is x"
+},
+
+{
+    "location": "benchmarks/#",
+    "page": "Benchmarks",
+    "title": "Benchmarks",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "benchmarks/#Benchmarks-1",
+    "page": "Benchmarks",
+    "title": "Benchmarks",
+    "category": "section",
+    "text": "Relative to the system Integer types, using the Safer Integer types has a time cost of 1.25x..2.00x."
 },
 
 {
