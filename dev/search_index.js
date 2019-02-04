@@ -93,7 +93,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Basic Guide",
     "title": "A Basic Guide",
     "category": "section",
-    "text": "To use safer integers within your computations, where you have been using     explict digit sequences put them inside the safe integer constructors,     SafeInt(11) or SafeUInt(0x015A) and similarly for the bitsize-named versions     SafeInt8, SafeInt16 .. SafeInt128 and SafeUInt8 .. SafeUInt128   Where you had usedInt or UInt now use SafeInt or SafeUInt and similarly with the bitsize-named versions.    SafeInt and SafeUInt give you these arithmetic operators:     +, -, *, div, rem, fld, mod, ^     which have become overflow and underflow aware.The Int and UInt types can fail at simple arithmetic         and will continue carrying the incorrectness forward.     The validity of values obtained is difficult to ascertain.Most calculations proceed without incident,  and when used SafeInts operate as Ints should a calculation encouter an overflow or underflow,      we are alerted and the calculation does not proceed."
+    "text": "To use safer integers within your computations, where you have been using     explict digit sequences put them inside the safe integer constructors,     SafeInt(11) or SafeUInt(0x015A) and similarly for the bitsize-named versions     SafeInt8, SafeInt16 .. SafeInt128 and SafeUInt8 .. SafeUInt128   Where you had usedInt or UInt now use SafeInt or SafeUInt and similarly with the bitsize-named versions.    SafeInt and SafeUInt give you these arithmetic operators:     +, -, *, div, rem, fld, mod, ^     which have become overflow and underflow aware.The Int and UInt types can fail at simple arithmetic and will continue carrying the incorrectness forward.     So, the validity of values obtained is difficult to ascertain.Most calculations proceed without incident,  and when used SafeInts operate as Ints should a calculation encouter an overflow or underflow,      we are alerted and the calculation does not proceed."
 },
 
 {
@@ -105,11 +105,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "basicguide/#Exported-Types-and-Constructors-/-Converters-1",
+    "location": "basicguide/#Exported-Types-/-Constructors-1",
     "page": "Basic Guide",
-    "title": "Exported Types and Constructors / Converters",
+    "title": "Exported Types / Constructors",
     "category": "section",
-    "text": "SafeInt8, SafeInt16, SafeInt32, SafeInt64, SafeInt128    \nSafeUInt8, SafeUInt16, SafeUInt32, SafeUInt64, SafeUInt128   \nSafeSigned, SafeUnsigned, SafeIntegerThey check for overflow, even when multiplied by the usual Int and UInt types.     Otherwise, they should be unsurprising."
+    "text": "SafeInt8, SafeInt16, SafeInt32, SafeInt64, SafeInt128    \nSafeUInt8, SafeUInt16, SafeUInt32, SafeUInt64, SafeUInt128   \nSafeSigned, SafeUnsigned, SafeIntegerThey check for overflow, even when multiplied by the usual Int and UInt types.They do not auto-widen. Otherwise, they should be unsurprising."
 },
 
 {
