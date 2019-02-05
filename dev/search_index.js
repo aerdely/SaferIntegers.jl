@@ -137,22 +137,6 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "symbols/#",
-    "page": "Symbols Used",
-    "title": "Symbols Used",
-    "category": "page",
-    "text": ""
-},
-
-{
-    "location": "symbols/#Symbols-Used-1",
-    "page": "Symbols Used",
-    "title": "Symbols Used",
-    "category": "section",
-    "text": "⦃ _ ⦄ is a collection of distinct entities ordered by an intrinsic relationship and sharing an essential characteristic\n⦃ 𝗮, 𝗰, 𝗸 ⦄ is a collection of distinct letters ordered lexicographically and sharing being lowercased\n⋵ ⦃ _ ⦄ selects any one within the collection, purposefully or intentlessly\n𝗫 ⋵ ⦃ 𝗮, 𝗰, 𝗸 ⦄\n𝗫 recieves 𝗮 orelse 𝗰 orelse 𝗸, as all are selectable𝒯  is an unsafe type\n𝓉  𝓉₁  𝓉₂ are values of type 𝒯\n𝒯ᵇⁱᵗˢ is the bitwidth of 𝒯\nthe bitwidth of Int32 is 32\n𝒮 is a built-in signed integer type\n𝒮 ⋵ ⦃ Int8, Int16, Int32, Int64, Int128 ⦄\n𝓈  𝓈₁  𝓈₂ are values of type 𝒮\n𝒰 is a built-in unsigned integer type\n𝒰 ⋵ ⦃ UInt8, UInt16, UInt32, UInt64, UInt128 ⦄\n𝓊  𝓊₁  𝓊₂ are values of type 𝒰𝓣  is a safe type\n𝓽  𝓽₁  𝓽₂ are values of type 𝓣\n𝓣ᵇⁱᵗˢ is the bitwidth of 𝓣 \nthe bitwidth of SafeInt64 is 64\n𝓢 is a safe signed integer type\n𝓢 ⋵ ⦃ SafeInt8, SafeInt16, SafeInt32, SafeInt64, SafeInt128 ⦄\n𝓼  𝓼₁  𝓼₂ are values of type 𝓢 \n𝓤 is a safe unsigned integer type\n𝓤 ⋵ ⦃ SafeUInt8, SafeUInt16, SafeUInt32, SafeUInt64, SafeUInt128 ⦄\n𝓾  𝓾₁  𝓾₂ are values of type 𝓤"
-},
-
-{
     "location": "howtouse/#",
     "page": "How To Use",
     "title": "How To Use",
@@ -190,6 +174,38 @@ var documenterSearchIndex = {"docs": [
     "title": "Safe Shifts",
     "category": "section",
     "text": "It is safe to shift (<<, >>) a value of type T where `β = sizeof(T) * 8 (with  SafeUnsigned valueby 0 bits, in which case the result is the value unchanged\nby bitsof(T) bits, in which case the result is zero(T)\nby -bitsof(T) bits, in which case the result is zero(T)\nby ⦃1, .., bitsof(T)-1⦄\nthe result is strictly less than any nonzero value given\nthe result, given a zero value remains zero\nby ⦃-1, .., -(bitsof(T)-1)⦄\nthe result is strictly greater than any nonzero value given\nthe result, given a zero value remains zeroof type T by 0 bits (unchanged) or by ±β bits where β ∈ ⦃0, 1, .., bitsof(T)⦄.An OverflowError occurs when there is an attempt to shift a value of safe type T by a magnitude greater than ±bitsof(T)."
+},
+
+{
+    "location": "rationals/#",
+    "page": "Safer Rationals",
+    "title": "Safer Rationals",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "rationals/#SaferRationals-1",
+    "page": "Safer Rationals",
+    "title": "SaferRationals",
+    "category": "section",
+    "text": ""
+},
+
+{
+    "location": "rationals/#Construction-1",
+    "page": "Safer Rationals",
+    "title": "Construction",
+    "category": "section",
+    "text": "Rational{SafeInt32}(3, 5) === SafeInt32(3) // SafeInt32(5)\n\nRational(SafeInt(3), SafeInt(5)) === SafeInt(3) // SafeInt(5)\n# Rational{SafeInt64}(3, 5) on 64 bit machine\n\na = SafeInt16(3); b = 5;\nRational(a, b)\n# Rational{SafeInt16}(3, 5)"
+},
+
+{
+    "location": "rationals/#Use-1",
+    "page": "Safer Rationals",
+    "title": "Use",
+    "category": "section",
+    "text": "Use just as you would use Julia\'s Rationals.  These will check for overflow, though."
 },
 
 {
