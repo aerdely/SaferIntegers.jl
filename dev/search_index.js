@@ -77,7 +77,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Highlights",
     "title": "What Does This Package Offer?",
     "category": "section",
-    "text": "SaferIntegers lets you work more cleanly and always alerts otherwise silent problems.\nThis package is designed for easy use and written to be performant in many sorts of use.\nUsing SaferIntegers can preclude some known ways that insecure systems are breached."
+    "text": "SaferIntegers lets you work more cleanly and always alerts otherwise silent problems.\nThis package is designed for easy use and written to be performant in many sorts of use.\nUsing SaferIntegers can preclude some known ways that insecure systems are breached.\nSupports Rationals formed of SafeInteger types"
 },
 
 {
