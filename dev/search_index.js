@@ -201,6 +201,14 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "rationals/#Use-1",
+    "page": "Safer Rationals",
+    "title": "Use",
+    "category": "section",
+    "text": "Use just as you would use Julia\'s Rationals.  These will check for overflow, though."
+},
+
+{
     "location": "benchmarks/#",
     "page": "Benchmarks",
     "title": "Benchmarks",
