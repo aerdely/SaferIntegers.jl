@@ -169,9 +169,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "howtouse/#Operations-with-a-SafeInteger-that-result-in-an-integer-value-will-return-SafeIntegers-1",
+    "location": "howtouse/#Operations-with-a-SafeInteger-that-result-in-an-integer-value-will-return-a-SafeInteger-1",
     "page": "How To Use",
-    "title": "Operations with a SafeInteger that result in an integer value will return SafeIntegers",
+    "title": "Operations with a SafeInteger that result in an integer value will return a SafeInteger",
     "category": "section",
     "text": ""
 },
