@@ -149,7 +149,15 @@ var documenterSearchIndex = {"docs": [
     "page": "How To Use",
     "title": "How To Use",
     "category": "section",
-    "text": "Just use safe integer types in place of the usual integer types.  The rest is well handled."
+    "text": ""
+},
+
+{
+    "location": "howtouse/#Just-use-safe-integer-types-in-place-of-the-usual-integer-types.-The-rest-is-well-handled.-1",
+    "page": "How To Use",
+    "title": "Just use safe integer types in place of the usual integer types.  The rest is well handled.",
+    "category": "section",
+    "text": ""
 },
 
 {
