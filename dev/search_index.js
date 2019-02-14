@@ -169,8 +169,16 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "howtouse/#Safe-Shifts-1",
-    "page": "How To Use",
+    "location": "safeshifts/#",
+    "page": "Safe Shifts",
+    "title": "Safe Shifts",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "safeshifts/#Safe-Shifts-1",
+    "page": "Safe Shifts",
     "title": "Safe Shifts",
     "category": "section",
     "text": "It is safe to shift (<<, >>) a value of type T where `β = sizeof(T) * 8 (with  SafeUnsigned valueby 0 bits, in which case the result is the value unchanged\nby bitsof(T) bits, in which case the result is zero(T)\nby -bitsof(T) bits, in which case the result is zero(T)\nby ⦃1, .., bitsof(T)-1⦄\nthe result is strictly less than any nonzero value given\nthe result, given a zero value remains zero\nby ⦃-1, .., -(bitsof(T)-1)⦄\nthe result is strictly greater than any nonzero value given\nthe result, given a zero value remains zeroof type T by 0 bits (unchanged) or by ±β bits where β ∈ ⦃0, 1, .., bitsof(T)⦄.An OverflowError occurs when there is an attempt to shift a value of safe type T by a magnitude greater than ±bitsof(T)."
