@@ -21,15 +21,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Overview",
     "title": "These integer types do not ignore arithmetic overflows and underflows.",
     "category": "section",
-    "text": ""
-},
-
-{
-    "location": "#Copyright-2018-2019-by-Jeffrey-Sarnoff.-This-work-is-made-available-under-The-MIT-License.-1",
-    "page": "Overview",
-    "title": "Copyright ©2018-2019 by Jeffrey Sarnoff. This work is made available under The MIT License.",
-    "category": "section",
-    "text": ""
+    "text": "Copyright ©2018-2019 by Jeffrey Sarnoff. This work is made available under The MIT License."
 },
 
 {
