@@ -101,7 +101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Basic Guide",
     "title": "Exported Types / Constructors",
     "category": "section",
-    "text": "SafeInt8, SafeInt16, SafeInt32, SafeInt64, SafeInt128    \nSafeUInt8, SafeUInt16, SafeUInt32, SafeUInt64, SafeUInt128   \nSafeSigned, SafeUnsigned, SafeIntegerThey check for overflow, even when multiplied by the usual Int and UInt types.They do not auto-widen. Otherwise, they should be unsurprising."
+    "text": "SafeInt8, SafeInt16, SafeInt32, SafeInt64, SafeInt128    \nSafeUInt8, SafeUInt16, SafeUInt32, SafeUInt64, SafeUInt128   \nSafeSigned, SafeUnsigned, SafeIntegerThey check for overflow, even when multiplied by the usual Int and UInt types.They do not auto-widen and are type stable. Otherwise, they are as system integers."
 },
 
 {
