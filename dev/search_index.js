@@ -161,11 +161,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "howtouse/#Operations-with-a-SafeInteger-that-result-in-an-integer-value-will-return-a-SafeInteger-1",
+    "location": "howtouse/#Almost-all-ops-with-a-SafeInteger-that-result-in-an-integer-value-will-return-a-SafeInteger-1",
     "page": "How To Use",
-    "title": "Operations with a SafeInteger that result in an integer value will return a SafeInteger",
+    "title": "Almost all ops with a SafeInteger that result in an integer value will return a SafeInteger",
     "category": "section",
-    "text": "except shifts of a system integer by a SafeInteger\ncheck for overflow\nreturn the same type of value as is shifted\nshifts of a SafeInteger by a system integer or SafeInteger\ncheck for overflow\nreturn a SafeInteger, the same type of value as is shifted"
+    "text": "shifts (>>>, >>, <<) check for overflow then return the same type as that shifted\npowers (^) check for overflow then return the same type as that of the base powered"
 },
 
 {
