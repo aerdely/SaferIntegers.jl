@@ -173,7 +173,7 @@ var documenterSearchIndex = {"docs": [
     "page": "How To Use",
     "title": "one shift signature and one power signature are the exceptions",
     "category": "section",
-    "text": "shifts (>>>, >>, <<) check for overflow then return the same type as that shifted\npowers (^) check for overflow then return the same type as that of the base poweredTo check for overflow and propagate safety:     - use a SafeInteger on the left hand side of a shift      - use a SafeInteger as the base number that is raised to a powerTo check for overflow only:use a SafeInteger on the right hand side of a shift\nand an unsafe integer on the left hand side\nuse a SafeInteger as the power to which the base number is raised\nand an unsafe integer as the base number"
+    "text": "shifts (>>>, >>, <<) check for overflow then return the same type as that shifted\npowers (^) check for overflow then return the same type as that of the base poweredTo check for overflow and propagate safety:use a SafeInteger on the left hand side of a shift \nuse a SafeInteger as the base number that is raised to a powerTo check for overflow only:use a SafeInteger on the right hand side of a shift\nand an unsafe integer on the left hand side\nuse a SafeInteger as the power to which the base number is raised\nand an unsafe integer as the base number"
 },
 
 {
