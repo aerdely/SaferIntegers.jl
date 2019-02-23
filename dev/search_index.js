@@ -37,7 +37,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Overview",
     "title": "Background",
     "category": "section",
-    "text": "Integer overflow occurs when an integer type is increased beyond its maximum value. Integer underflow occurs when an integer type is decreased below its minimum value.  Signed and Unsigned values are subject to overflow and underflow.  With Julia, you can see the rollover using Int or UInt types:\n    typemax(Int) + one(Int) < 0\n    typemin(Int) - one(Int) > 0\n    typemax(UInt) + one(UInt) == typemin(UInt)\n    typemin(UInt) - one(UInt) == typemax(UInt)\nThere are security implications for integer overflow in certain situations.    a = Int16(456) * Int16(567)\n\n    # a == -3592 \n    # this for loop does not execute\n\n    for i in 1:a\n        secure(biohazard[i])\n    end"
+    "text": "Integer overflow occurs when an integer type is increased beyond its maximum value. Integer underflow occurs when an integer type is decreased below its minimum value.  Signed and Unsigned values are subject to overflow and underflow.  With Julia, you can see the rollover using Int or UInt types:\n    typemax(Int) + one(Int) < 0\n    typemin(Int) - one(Int) > 0\n    typemax(UInt) + one(UInt) == typemin(UInt)\n    typemin(UInt) - one(UInt) == typemax(UInt)\nThere are security implications for integer overflow in certain situations.\n    a = Int16(456) * Int16(567)\n\n    # a == -3592 \n    # this for loop does not execute\n\n    for i in 1:a\n        secure(biohazard[i])\n    end\n"
 },
 
 {
