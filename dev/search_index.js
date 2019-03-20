@@ -69,7 +69,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Highlights",
     "title": "What Does This Package Offer?",
     "category": "section",
-    "text": "SaferIntegers lets you work more cleanly and always alerts otherwise silent problems.\nThis package is designed for easy use and written to be performant in many sorts of use.\nUsing SaferIntegers can preclude some known ways that insecure systems are breached.\nSupports Rationals formed of SafeInteger types"
+    "text": "SaferIntegers lets you work more cleanly and always alerts otherwise silent problems.\nThis package is designed for easy use and written to be performant in many sorts of use.\nUsing SaferIntegers can preclude some known ways that insecure systems are breached.\nSupports Rationals formed of SafeInteger types\nSupports testing of other source code for integer safety"
 },
 
 {
@@ -174,6 +174,30 @@ var documenterSearchIndex = {"docs": [
     "title": "one shift signature and one power signature are the exceptions",
     "category": "section",
     "text": "These two cases are allowed to provide more flexible overflow testing with shifts and powers.shifts (>>>, >>, <<) check for overflow then return the same type as that shifted\npowers (^) check for overflow then return the same type as that of the base poweredTo check for overflow and propagate safety:use a SafeInteger on the left hand side of a shift \nuse a SafeInteger as the base number that is raised to a powerTo check for overflow only:use a SafeInteger on the right hand side of a shift\nand an unsafe integer on the left hand side\nuse a SafeInteger as the power to which the base number is raised\nand an unsafe integer as the base number"
+},
+
+{
+    "location": "howtouse/#Test-code-for-integer-safety-1",
+    "page": "How To Use",
+    "title": "Test code for integer safety",
+    "category": "section",
+    "text": ""
+},
+
+{
+    "location": "howtouse/#test-snippets-1",
+    "page": "How To Use",
+    "title": "test snippets",
+    "category": "section",
+    "text": "\njulia> @saferintegers begin\n         x = 64\n         y = Int16(16)\n         z = x + y + SafeInt128(x)\n         x, y, z\n         end\n(64, 16, 144)\n\njulia> typeof.(ans)\n(SafeInt64, SafeInt16, SafeInt128)"
+},
+
+{
+    "location": "howtouse/#test-source-file-1",
+    "page": "How To Use",
+    "title": "test source file",
+    "category": "section",
+    "text": "julia> cd(<source file directory>)\njulia> @saferintegers include(<filename.jl>)"
 },
 
 {
