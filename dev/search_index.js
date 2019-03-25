@@ -161,9 +161,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "howtouse/#Almost-all-ops-with-a-SafeInteger-that-yield-integer-will-return-a-SafeInteger-1",
+    "location": "howtouse/#Almost-all-ops-with-a-SafeInteger-that-yield-an-Integer-will-return-a-SafeInteger-1",
     "page": "How To Use",
-    "title": "Almost all ops with a SafeInteger that yield integer will return a SafeInteger",
+    "title": "Almost all ops with a SafeInteger that yield an Integer will return a SafeInteger",
     "category": "section",
     "text": ""
 },
