@@ -237,7 +237,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Safer Rationals",
     "title": "Construction",
     "category": "section",
-    "text": "Rational{SafeInt32}(3, 5) === SafeInt32(3) // SafeInt32(5)\n\nRational(SafeInt(3), SafeInt(5)) === SafeInt(3) // SafeInt(5)\n# Rational{SafeInt64}(3, 5) on 64 bit machine\n\na = SafeInt16(3); b = 5;\nRational(a, b)\n# Rational{SafeInt16}(3, 5)"
+    "text": "SafeRational(2, 5) == SafeInt(2) // SafeInt(5)\n\nSafeRational(SafeUInt16(2), SafeUInt16(5)) == SafeUInt16(2) // SafeUInt16(5)\n\nSafeRational(Int16(2), Int32(5)) == SafeInt32(2) // SafeInt32(5)"
 },
 
 {
