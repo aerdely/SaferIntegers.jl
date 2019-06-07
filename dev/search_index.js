@@ -296,4 +296,12 @@ var documenterSearchIndex = {"docs": [
     "text": "Secure Coding (Integer Security)\nInteger Arithmetic and Undefined Behavior"
 },
 
+{
+    "location": "references/#Software-1",
+    "page": "Refs",
+    "title": "Software",
+    "category": "section",
+    "text": "SafeInt (C++)\nBoost SafeNumerics (C++)"
+},
+
 ]}
