@@ -117,7 +117,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Supported Operations",
     "title": "Supported Operations and Functions",
     "category": "section",
-    "text": "signbit, sign, abs, abs2\ncount_ones, count_zeros\nleading_zeros, trailing_zeros, leading_ones, trailing_ones\nndigits0z\nisless, isequal, <=, <, ==, !=, >=, >\n>>>, >>, <<, +, -, *, \\, ^\ndiv, fld, cld, rem, mod\nzero, one\ntypemin, typemax, widen"
+    "text": "signbit, sign, abs, abs2\ncount_ones, count_zeros\nleading_zeros, trailing_zeros, leading_ones, trailing_ones\nndigits0z\nisless, isequal, <=, <, ==, !=, >=, >\n>>>, >>, <<, +, -, *, \\, ^\ndiv, fld, fld1, cld, rem, mod, mod1\ndivrem, fldmod, fldmod1\nzero, one\ntypemin, typemax, widen"
 },
 
 {
