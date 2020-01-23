@@ -69,11 +69,6 @@ for OP in (:(<), :(<=), :(>=), :(>), :(!=), :(==), :isless, :isequal)
 end
 
 
-
-for OP in (:(>>>), :(>>), :(<<))
-    @eval begin
-
-
 for OP in (:(>>>), :(>>), :(<<))
     @eval begin
 
