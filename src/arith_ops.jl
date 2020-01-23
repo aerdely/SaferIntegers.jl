@@ -124,9 +124,9 @@ end
 
 
 function (\)(x::S, y::S) where S<:SafeInteger
-    ix = baseint(y)
-    iy = baseint(x)
-    checked_div(ix, iy)
+    ix = baseint(x)
+    iy = baseint(y)
+    checked_div(iy, ix)
     result = ix \ iy
     return result
 end
