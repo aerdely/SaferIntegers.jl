@@ -49,32 +49,51 @@ for OP in (:(<), :(<=), :(>=), :(>), :(!=), :(==), :isless, :isequal)
            return $OP(xx, yy)
        end
 
-       @inline function $OP(x::T1, y::T2) where {T1<:SafeInteger, T2<:Signed}
+       @inline function $OP(x::T1, y::T2) where {T1<:SafeSigned, T2<:Signed}
            xx, yy = promote(x, y)
            return $OP(xx, yy)
        end
-       @inline function $OP(x::T1, y::T2) where {T1<:Signed, T2<:SafeInteger}
+       @inline function $OP(x::T1, y::T2) where {T1<:Signed, T2<:SafeSigned}
            xx, yy = promote(x, y)
            return $OP(xx, yy)
        end
-       @inline function $OP(x::T1, y::T2) where {T1<:SafeInteger, T2<:Unsigned}
+       @inline function $OP(x::T1, y::T2) where {T1<:SafeSigned, T2<:Unsigned}
            xx, yy = promote(x, y)
            return $OP(xx, yy)
        end
-       @inline function $OP(x::T1, y::T2) where {T1<:Unsigned, T2<:SafeInteger}
+       @inline function $OP(x::T1, y::T2) where {T1<:Unsigned, T2<:SafeSigned}
            xx, yy = promote(x, y)
            return $OP(xx, yy)
        end
+       @inline function $OP(x::T1, y::T2) where {T1<:SafeUnsigned, T2<:Signed}
+           xx, yy = promote(x, y)
+           return $OP(xx, yy)
+       end
+       @inline function $OP(x::T1, y::T2) where {T1<:Signed, T2<:SafeUnsigned}
+           xx, yy = promote(x, y)
+           return $OP(xx, yy)
+       end
+       @inline function $OP(x::T1, y::T2) where {T1<:SafeUnsigned, T2<:Unsigned}
+           xx, yy = promote(x, y)
+           return $OP(xx, yy)
+       end
+       @inline function $OP(x::T1, y::T2) where {T1<:Unsigned, T2<:SafeUnsigned}
+           xx, yy = promote(x, y)
+           return $OP(xx, yy)
+       end
+        
    end
 end
 
-
 for OP in (:(>>>), :(>>), :(<<))
-    @eval begin
+ Uns  @eval begin
 
        @inline function $OP(x::T, y::T) where T<:SafeInteger
             r1 = baseint(x)
-            r2 = baseint(y)
+            r2 Uns baseint(y)
+
+       @inline function $OP(x::T, y::T) where T<:SafeInteger
+            r1 = baseint(x)
             bitsof(T) < abs(r2) && throw(OverflowError("cannot shift $T by $y"))
             result = $OP(r1, r2)
             return reinterpret(T, result)
