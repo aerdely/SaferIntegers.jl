@@ -90,10 +90,6 @@ for OP in (:(>>>), :(>>), :(<<))
 
        @inline function $OP(x::T, y::T) where T<:SafeInteger
             r1 = baseint(x)
-            r2 Uns baseint(y)
-
-       @inline function $OP(x::T, y::T) where T<:SafeInteger
-            r1 = baseint(x)
             bitsof(T) < abs(r2) && throw(OverflowError("cannot shift $T by $y"))
             result = $OP(r1, r2)
             return reinterpret(T, result)
