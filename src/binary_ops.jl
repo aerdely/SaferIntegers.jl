@@ -81,6 +81,17 @@ for OP in (:(<), :(<=), :(>=), :(>), :(!=), :(==), :isless, :isequal)
            xx, yy = promote(x, y)
            return $OP(xx, yy)
        end
+
+       @inline function $OP(x::S, y::BigInt) where {S<:SafeSigned}
+           xx, yy = promote(x, y)
+           return $OP(xx, yy)
+       end
+       @inline $OP(x::BigInt, y::S) where {S<:SafeSigned} = $OP(y, x)
+       @inline function $OP(x::S, y::BigInt) where {S<:SafeUnsigned}
+           xx, yy = promote(x, y)
+           return $OP(xx, yy)
+       end
+       @inline $OP(x::BigInt, y::S) where {S<:SafeUnsigned} = $OP(y, x)
         
    end
 end
