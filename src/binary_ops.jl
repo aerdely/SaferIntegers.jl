@@ -90,28 +90,28 @@ for OP in (:(>>>), :(>>), :(<<))
         @inline function $OP(x::S, y::Int) where {S<:SafeInteger}
             xx = baseint(x)
             bitsof(T1) < abs(y) && throw(OverflowError("cannot shift $S by $y"))
-            return reinterpret(T1, $OP(xx, y))
+            return reinterpret(S, $OP(xx, y))
         end
 
         @inline function $OP(x::I, y::S) where {I<:Signed, S<:SafeInteger}
             yy = baseint(y)
             bitsof(T1) < abs(yy) && throw(OverflowError("cannot shift $I by $yy"))
-            return reinterpret(T1, $OP(x, yy))
+            return reinterpret(I, $OP(x, yy))
         end
         @inline function $OP(x::S, y::I) where {S<:SafeInteger, I<:Signed}
             xx = baseint(x)
             bitsof(T1) < abs(y) && throw(OverflowError("cannot shift $S by $y"))
-            return reinterpret(T1, $OP(xx, y))
+            return reinterpret(S, $OP(xx, y))
         end
         @inline function $OP(x::I, y::S) where {I<:Unsigned, S<:SafeInteger}
             yy = baseint(y)
             bitsof(T1) < abs(yy) && throw(OverflowError("cannot shift $I by $yy"))
-            return reinterpret(T1, $OP(x, yy))
+            return reinterpret(I, $OP(x, yy))
         end
         @inline function $OP(x::S, y::I) where {S<:SafeInteger, I<:Unsigned}
             xx = baseint(x)
             bitsof(T1) < abs(y) && throw(OverflowError("cannot shift $S by $y"))
-            return reinterpret(T1, $OP(xx, y))
+            return reinterpret(S, $OP(xx, y))
         end
 
    end
