@@ -86,7 +86,7 @@ for OP in (:(<), :(<=), :(>=), :(>), :(!=), :(==), :isless, :isequal)
 end
 
 for OP in (:(>>>), :(>>), :(<<))
- Uns  @eval begin
+    @eval begin
 
        @inline function $OP(x::T, y::T) where T<:SafeInteger
             r1 = baseint(x)
