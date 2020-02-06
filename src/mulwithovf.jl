@@ -9,12 +9,30 @@ function isneg_negabs(x::I) where {I<:Base.Checked.SignedInt}
     signbit(x) ? (true, x) : (false, -x)
 end
 
-function imul(x::I, y::I) where {I<:Base.Checked.SignedInt}
+function Base.Checked.mul_with_overflow(x::Int128, y::Int128)
     xsbit, xneg = isneg_negabs(x)
     ysbit, yneg = isneg_negabs(y)
     z = xneg * yneg
     ovf =  z <= min(xneg, yneg)
     return xsbit === ysbit ? (z, ovf) : (-z, ovf)
+end
+
+function Base.Checked.mul_with_overflow(x::UInt128, y::UInt128)
+    z = x * y
+    ovf = z <= max(x,y)
+    return z, ovf
+end
+
+function Base.Checked.checked_mul(x::Int128, y::Int128)
+   z, ovf = mul_with_overflow(x, y)
+   ovf && throw(OverflowError("$x * $y"))
+   return z
+end
+
+function Base.Checked.checked_mul(x::UInt128, y::UInt128)
+   z, ovf = mul_with_overflow(x, y)
+   ovf && throw(OverflowError("$x * $y"))
+   return z
 end
 
 #=
