@@ -83,16 +83,28 @@ end
 
 u8s = collect(UInt8(0):UInt8(255));
 
-for a in u8s
-   for b in u8s
-      ab1, ovf1 = mul_with_overflow(a, b)
-      ab2, ovf2 = u8mul_ovf(a, b)
-      if ovf1 != ovf2
-         println(string("a,b = ",a,", ",b,"    ovf1,ovf2 = ",ovf1,", ",ovf2))
-         break;break
+function test_u8s()
+   
+   for a in u8s
+      for b in u8s
+         ab1, ovf1 = mul_with_overflow(a, b)
+         ab2, ovf2 = u8mul_ovf(a, b)
+         if ovf1 != ovf2
+            println(string("a,b = ",a,", ",b,"    ovf1,ovf2 = ",ovf1,", ",ovf2))
+            return true
+         end
+         if ab1 != ab2
+            println(string("a,b = ",a,", ",b,"    ab1,ab2 = ",ab1,", ",ab2))
+            return true
+         end
       end
    end
+   
+   return nothing
 end
+
+test_u8s()
+
 
 #=
  
