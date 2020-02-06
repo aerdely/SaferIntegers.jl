@@ -1,3 +1,15 @@
+#=
+mul_with_overflow(x::T, y::T) where {T<:SignedInt}   = checked_smul_int(x, y)
+mul_with_overflow(x::T, y::T) where {T<:UnsignedInt} = checked_umul_int(x, y)
+
+function checked_mul(x::T, y::T) where T<:SignedIng
+    @_inline_meta
+    z, b = mul_with_overflow(x, y)
+    b && throw_overflowerr_binaryop(:*, x, y)
+    z
+end
+=#
+
 mul_ovf(x::Int32, y::Int32) = mul_with_overflow(x, y)
 mul_ovf(x::Int64, y::Int64) = mul_with_overflow(x, y)
 
