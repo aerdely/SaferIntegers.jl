@@ -10,7 +10,7 @@ for r = 1:typemax(UInt8)
     b = int8[c]
     ab = a * b    
     imat[r,c] = ab
-    c, ovf = Base.Checked.mul_with_overflow(Int8(a), Int8(b))
+    p, ovf = Base.Checked.mul_with_overflow(Int8(a), Int8(b))
     iovf[r,c] = ovf
   end
 end
@@ -21,7 +21,7 @@ for r = 1:typemax(UInt8)
     b = uint8[c]
     ab = a * b    
     umat[r,c] = ab
-    c, ovf = Base.Checked.mul_with_overflow(UInt8(a), UInt8(b))
+    p, ovf = Base.Checked.mul_with_overflow(UInt8(a), UInt8(b))
     uovf[r,c] = ovf
   end
 end
