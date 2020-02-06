@@ -130,6 +130,34 @@ end
 test_u128s()
 
 
+@noinline function test_checked()
+   
+  for a in u128s
+   for b in u128s
+      ab1, ovf1 = mul_with_overflow(a, b)
+   end
+end
+return nothing
+end
+
+@noinline function test_cobbled()   
+  for a in u128s
+   for b in u128s
+      ab2, ovf2 = u128mul_ovf(a, b)
+   end
+end
+return nothing
+end
+
+time_todo_mul_with_overflow = @belapsed test_checked()
+time_todo_mul_ovf = @belapsed test_cobbled()
+
+percentage_speedup = round(time_todo_mul_with_overflow / time_todo_mul_ovf, digits = 4)
+
+
+
+
+
 #=
  
 const LONG_BIT      = UInt128(128)
