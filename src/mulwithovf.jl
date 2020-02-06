@@ -1,17 +1,17 @@
 # negative of the absolute value of x
-function nabs(x::I) where {I<:Base.Checked.SignedInt}
+function negabs(x::I) where {I<:Base.Checked.SignedInt}
    signbit(x) ? x : -x
 end
 function isneg_abs(x::I) where {I<:Base.Checked.SignedInt}
     signbit(x) ? (true, -x) : (false, sx)
 end
-function isneg_nabs(x::I) where {I<:Base.Checked.SignedInt}
+function isneg_negabs(x::I) where {I<:Base.Checked.SignedInt}
     signbit(x) ? (true, x) : (false, -x)
 end
 
 function imul(x::I, y::I) where {I<:Base.Checked.SignedInt}
-    xsbit, xneg = isneg_nabs(x)
-    ysbit, yneg = isneg_nabs(y)
+    xsbit, xneg = isneg_negabs(x)
+    ysbit, yneg = isneg_negabs(y)
     z = xneg * yneg
     ovf =  z <= min(xneg, yneg)
     return xsbit === ysbit ? (z, ovf) : (-z, ovf)
