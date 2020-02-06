@@ -1,3 +1,24 @@
+#=
+
+Maybe there’s an actual issue here?
+
+julia> @btime prod(Int128(i) for i in 1:30)
+  1.707 ns (0 allocations: 0 bytes)
+265252859812191058636308480000000
+
+
+julia> @btime prod(SaferIntegers.SafeInt128(i) for i in 1:30)
+  16.591 μs (0 allocations: 0 bytes)
+265252859812191058636308480000000
+
+
+This looks good though:
+julia> @btime prod(SaferIntegers.SafeInt64(i) for i in 1:20)
+  1.597 ns (0 allocations: 0 bytes)
+2432902008176640000
+
+=#
+
 # (result::Integer, isoverflow::Bool) = op_with_overflow(x::I, y::I) where {I<:Integer}
 using Base.Checked: add_with_overflow, sub_with_overflow, mul_with_overflow
 
