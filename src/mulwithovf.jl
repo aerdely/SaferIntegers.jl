@@ -13,7 +13,7 @@ function imul(x::I, y::I) where {I<:Base.Checked.SignedInt}
     xsbit, xneg = isneg_nabs(x)
     ysbit, yneg = isneg_nabs(y)
     z = xneg * yneg
-    ovf =  z >= min(xneg, yneg)
+    ovf =  z <= min(xneg, yneg)
     return xsbit === ysbit ? (z, ovf) : (-(z), ovf)
 end
 
