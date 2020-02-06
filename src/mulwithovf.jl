@@ -1,5 +1,5 @@
-
-function negabs(x::I) where {I<:Base.Checked.SignedInt}
+# negative of the absolute value of x
+function nabs(x::I) where {I<:Base.Checked.SignedInt}
    signbit(x) ? x : -x
 end
 function isneg_abs(x::I) where {I<:Base.Checked.SignedInt}
