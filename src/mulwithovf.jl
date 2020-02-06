@@ -9,6 +9,8 @@ function isneg_negabs(x::I) where {I<:Base.Checked.SignedInt}
     signbit(x) ? (true, x) : (false, -x)
 end
 
+#=
+
 function Base.Checked.mul_with_overflow(x::Int128, y::Int128)
     xsbit, xneg = isneg_negabs(x)
     ysbit, yneg = isneg_negabs(y)
@@ -23,6 +25,7 @@ function Base.Checked.mul_with_overflow(x::UInt128, y::UInt128)
     return z, ovf
 end
 
+
 function Base.Checked.checked_mul(x::Int128, y::Int128)
    z, ovf = mul_with_overflow(x, y)
    ovf && throw(OverflowError("$x * $y"))
@@ -34,6 +37,28 @@ function Base.Checked.checked_mul(x::UInt128, y::UInt128)
    ovf && throw(OverflowError("$x * $y"))
    return z
 end
+=#
+
+function mul_with_ovf(x::Int128, y::Int128)
+    xsbit, xneg = isneg_negabs(x)
+    ysbit, yneg = isneg_negabs(y)
+    z = xneg * yneg
+    ovf =  z <= min(xneg, yneg)
+    return xsbit === ysbit ? (z, ovf) : (-z, ovf)
+end
+
+function mul_with_ovf(x::UInt128, y::UInt128)
+    z = x * y
+    ovf = z <= max(x,y)
+    return z, ovf
+end
+
+function checkedmul(x::I, y::I) where {I<:Union{Int128, UInt128}}
+   z, ovf = mul_with_ovf(x, y)
+   ovf && throw(OverflowError("$x * $y"))
+   return z
+end
+
 
 #=
 mul_with_overflow(x::T, y::T) where {T<:SignedInt}   = checked_smul_int(x, y)
