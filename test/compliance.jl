@@ -16,13 +16,13 @@ function mul_with_ovf(x::I, y::I) where {I<:Union{Signed, SafeSigned}}
     xsbit, xneg = isneg_negabs(x)
     ysbit, yneg = isneg_negabs(y)
     z = xneg * yneg
-    ovf =  z <= min(xneg, yneg)
+    ovf =  z < min(xneg, yneg)
     return xsbit === ysbit ? (z, ovf) : (-z, ovf)
 end
 
 function mul_with_ovf(x::I, y::I) where {I<:Union{Unsigned, SafeUnsigned}}
     z = x * y
-    ovf = z <= max(x,y)
+    ovf = z < max(x,y)
     return z, ovf
 end
 
