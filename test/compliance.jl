@@ -1,3 +1,41 @@
+# negative of the absolute value of x
+function negabs(x::I) where {I<:Base.Checked.SignedInt}
+   signbit(x) ? x : -x
+end
+function isneg_abs(x::I) where {I<:Base.Checked.SignedInt}
+    signbit(x) ? (true, -x) : (false, sx)
+end
+function isneg_negabs(x::I) where {I<:Base.Checked.SignedInt}
+    signbit(x) ? (true, x) : (false, -x)
+end
+
+
+
+
+function mul_with_ovf(x::I, y::I) where {I<:Union{Signed, SafeSigned}}
+    xsbit, xneg = isneg_negabs(x)
+    ysbit, yneg = isneg_negabs(y)
+    z = xneg * yneg
+    ovf =  z <= min(xneg, yneg)
+    return xsbit === ysbit ? (z, ovf) : (-z, ovf)
+end
+
+function mul_with_ovf(x::I, y::I) where {I<:Union{Unsigned, SafeUnsigned}}
+    z = x * y
+    ovf = z <= max(x,y)
+    return z, ovf
+end
+
+function checkedmul(x::I, y::I) where {I<:Union{Int128, UInt128}}
+   z, ovf = mul_with_ovf(x, y)
+   ovf && throw(OverflowError("$x * $y"))
+   return z
+end
+
+
+
+
+
 uint8 = uint8a = uint8b = collect(typemin(UInt8):typemax(UInt8));
 int8  = int8a  = int8b  = collect(typemin(Int8):typemax(Int8));
 
