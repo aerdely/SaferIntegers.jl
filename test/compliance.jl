@@ -90,11 +90,11 @@ function test_u8s()
          ab1, ovf1 = mul_with_overflow(a, b)
          ab2, ovf2 = u8mul_ovf(a, b)
          if ovf1 != ovf2
-            println(string("a,b = ",a,", ",b,"    ovf1,ovf2 = ",ovf1,", ",ovf2))
+            println(string("UInt8:  a,b = ",a,", ",b,"    ovf1,ovf2 = ",ovf1,", ",ovf2))
             return true
          end
          if ab1 != ab2
-            println(string("a,b = ",a,", ",b,"    ab1,ab2 = ",ab1,", ",ab2))
+            println(string("UInt8:  a,b = ",a,", ",b,"    ab1,ab2 = ",ab1,", ",ab2))
             return true
          end
       end
@@ -104,6 +104,30 @@ function test_u8s()
 end
 
 test_u8s()
+
+u128s = rand(UInt128, 2048) .>> rand(32:96, 2048);
+
+function test_u128s()
+   
+   for a in u128s
+      for b in u128s
+         ab1, ovf1 = mul_with_overflow(a, b)
+         ab2, ovf2 = u128mul_ovf(a, b)
+         if ovf1 != ovf2
+            println(string("UInt128:  a,b = ",a,", ",b,"    ovf1,ovf2 = ",ovf1,", ",ovf2))
+            return true
+         end
+         if ab1 != ab2
+            println(string("UInt128:  a,b = ",a,", ",b,"    ab1,ab2 = ",ab1,", ",ab2))
+            return true
+         end
+      end
+   end
+   
+   return nothing
+end
+
+test_u128s()
 
 
 #=
