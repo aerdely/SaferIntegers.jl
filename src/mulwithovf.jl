@@ -32,6 +32,35 @@ const LONG_BIT       = UInt128(128)
 const HALF_LONG_BIT  = UInt128(64)
 const HALFSIZE_MAX = (one(UInt128) << HALF_LONG_BIT) - one(UInt128)
 
+function umul_checked(x::UInt128, y::UInt128)
+   x_hi = x >> HALF_LONG_BIT
+   x_lo = x &  HALFSIZE_MAX
+   y_hi = y >> HALF_LONG_BIT
+   y_lo = y &  HALFSIZE_MAX
+
+   lowbits = x_lo * y_lo
+
+   x_hi_z = iszero(x_hi)
+   y_hi_z = iszero(y_hi)
+   x_hi_z && y_hi_z && return lowbits, false
+
+   ovf = !x_hi_z && !y_hi_z
+   ovf && throw_overflowerr_binaryop(:*, x, y)
+
+   midbits1 = x_lo * y_hi
+   midbits2 = x_hi * y_lo
+   midbits  = midbits1 + midbits2
+   ovf = midbits < midbits1 || midbits > HALFSIZE_MAX
+
+   product = lowbits + (midbits << HALF_LONG_BIT)
+   ovf = ovf || product < lowbits
+   ovf && throw_overflowerr_binaryop(:*, x, y)
+
+   return product
+end
+
+
+
 function umul_ovf(x::UInt128, y::UInt128)
    x_hi = x >> HALF_LONG_BIT
    x_lo = x & HALFSIZE_MAX
