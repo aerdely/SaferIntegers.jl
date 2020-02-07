@@ -1,3 +1,53 @@
+unsafe_leading_zeros(x::SafeInt128) = leading_zeros(reinterpret(Int128, x))
+unsafe_leading_zeros(x::SafeInt64) = leading_zeros(reinterpret(Int64, x))
+unsafe_leading_ones(x::SafeInt128) = leading_ones(reinterpret(Int128, x))
+unsafe_leading_ones(x::SafeInt64) = leading_ones(reinterpret(Int64, x))
+
+@inline unsafe_leading_zeros(x::S, y::S) where {S<:Union{SafeInt64,SafeInt128}} = unsafe_leading_zeros(x) + unsafe_leading_zeros(y)
+unsafe_leading_ones(x::S, y::S) where {S<:Union{SafeInt64,SafeInt128}} = unsafe_leading_ones(x) + unsafe_leading_ones(y)
+unsafe_leading_zerosones(x::S, y::S) where {S<:Union{SafeInt64,SafeInt128}} = unsafe_leading_zeros(x) + unsafe_leading_ones(y)
+unsafe_leading_oneszeros(x::S, y::S) where {S<:Union{SafeInt64,SafeInt128}} = unsafe_leading_ones(x) + unsafe_leading_zeros(y)
+
+@inline unsafe_remaining_zeros(x::SafeInt64, y::SafeInt64) = unsafe_leading_zeros(x, y) - 64
+unsafe_remaining_ones(x::SafeInt64, y::SafeInt64) = unsafe_leading_ones(x, y) - 64
+unsafe_remaining_zerosones(x::SafeInt64, y::SafeInt64) = unsafe_leading_zerosones(x, y) - 64
+unsafe_remaining_oneszeros(x::SafeInt64, y::SafeInt64) = unsafe_leading_oneszeros(x, y) - 64
+
+@inline unsafe_remaining_zeros(x::SafeInt128, y::SafeInt128) = unsafe_leading_zeros(x, y) - 128
+unsafe_remaining_ones(x::SafeInt128, y::SafeInt128) = unsafe_leading_ones(x, y) - 128
+unsafe_remaining_zerosones(x::SafeInt128, y::SafeInt128) = unsafe_leading_zerosones(x, y) - 128
+unsafe_remaining_oneszeros(x::SafeInt128, y::SafeInt128) = unsafe_leading_oneszeros(x, y) - 128
+
+
+@inline checked_multiply(x::SafeInt128, y::SafeInt128) = checked_multiply(Val{signbit(x)}, Val{signbit(y)}, x, y)
+@inline function checked_multiply(::Type{Val{false}}, ::Type{Val{false}}, x::SafeInt128, y::SafeInt128)
+   extra_bits = unsafe_remaining_zeros(x, y)
+   extra_bits > 0 && return SafeInt128(Int128(x)*Int128(y))
+   signbit(extra_bits) && throw(OverflowError("$(x) * $(y)"))
+   !iszero(extra_bits) && return SafeInt128(Int128(x)*Int128(y))
+   return x*y
+end
+function checked_multiply(::Type{Val{true}}, ::Type{Val{true}}, x::SafeInt128, y::SafeInt128)
+   extra_bits = unsafe_remaining_ones(x, y)
+   signbit(extra_bits) && throw(OverflowError("$(x) * $(y)"))
+   !iszero(extra_bits) && return SafeInt128(Int128(x)*Int128(y))
+   return x*y
+end
+function checked_multiply(::Type{Val{false}}, ::Type{Val{true}}, x::SafeInt128, y::SafeInt128)
+   extra_bits = unsafe_remaining_zerosones(x, y)
+   signbit(extra_bits) && throw(OverflowError("$(x) * $(y)"))
+   !iszero(extra_bits) && return SafeInt128(Int128(x)*Int128(y))
+   return x*y
+end
+function checked_multiply(::Type{Val{true}}, ::Type{Val{false}}, x::SafeInt128, y::SafeInt128)
+   extra_bits = unsafe_remaining_oneszeros(x, y)
+   signbit(extra_bits) && throw(OverflowError("$(x) * $(y)"))
+   !iszero(extra_bits) && return SafeInt128(Int128(x)*Int128(y))
+   return x*y
+end
+
+
+
 # negative of the absolute value of x
 function negabs(x::I) where {I<:Base.Checked.SignedInt}
    signbit(x) ? x : -x
